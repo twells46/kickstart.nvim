@@ -17,6 +17,8 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'mdl' },
+        sh = { 'shellcheck' },
+        bash = { 'shellcheck' },
       }
 
       -- Create autocommand which carries out the actual linting
@@ -69,6 +71,8 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        sh = { 'shfmt' },
+        bash = { 'shfmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
