@@ -91,6 +91,8 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+require('util.plugin').lazy_file()
+
 -- [[ Configure and install plugins ]]
 require('lazy').setup 'plugins'
 

@@ -11,19 +11,11 @@ return { -- LSP Plugins
       },
     },
   },
-  --[[
-  {
-    -- Typescript specific tool similar to LSP which provides several very nice commands
-    -- See https://github.com/pmizio/typescript-tools.nvim?tab=readme-ov-file#custom-user-commands
-    'pmizio/typescript-tools.nvim',
-    ft = { 'typescript', 'typescriptreact' },
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {},
-  },
-  ]]
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+
+    event = 'LazyFile',
 
     dependencies = {
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -185,10 +177,11 @@ return { -- LSP Plugins
           },
         },
         vtsls = {},
+        bashls = {},
+        awk_ls = {},
       }
 
       servers.lua_ls.capabilities = vim.tbl_deep_extend('force', {}, capabilities, servers.lua_ls.capabilities or {})
-
       vim.lsp.config('lua_ls', servers.lua_ls)
       vim.lsp.enable 'lua_ls'
 
@@ -199,6 +192,14 @@ return { -- LSP Plugins
       servers.vtsls.capabilities = vim.tbl_deep_extend('force', {}, capabilities, servers.vtsls.capabilities or {})
       vim.lsp.config('vtsls', servers.vtsls)
       vim.lsp.enable 'vtsls'
+
+      servers.bashls.capabilities = vim.tbl_deep_extend('force', {}, capabilities, servers.bashls.capabilities or {})
+      vim.lsp.config('bashls', servers.bashls)
+      vim.lsp.enable 'bashls'
+
+      servers.awk_ls.capabilities = vim.tbl_deep_extend('force', {}, capabilities, servers.awk_ls.capabilities or {})
+      vim.lsp.config('awk_ls', servers.awk_ls)
+      vim.lsp.enable 'awk_ls'
     end,
   },
 }
